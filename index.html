@@ -1,26 +1,56 @@
-<!Docktype html>
-<html>
-	<head>
-	<title>Simple Webpage</title>
-	</head>
-<body>
-	<table border="2" align="center">
-	
-	
-	<tr>
-		<th>USER NAME:</th>
-		<td><input type="text" placeholder="Enter username" required></td>
-	</tr>
-	<tr>
-		<th>PASSWORD:</th>
-		
-		<td><input type="password" placeholder="Enter password"></td>
-	</tr>
-	<tr>
-		<td colspan="2"align="center">
-			<button>LOGIN</button>
-		</td>
-	</tr>
-	</table>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Document
+        </title>
+        <style>
+            .main{
+                height:100vh;
+                background-image:url(./image.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            ul{
+                list-style-type:none;         
+                display: flex;
+                gap:90px;
+                background-color: bisque;
+                margin:0;
+                padding-top:25px;
+                justify-content: center;
+                height:50px;
+                font-size: larger;
+
+            }
+            .box1{
+                height:500px;
+                width:300px;
+                border:1px solid
+                position:relative           
+            }
+            .box2{
+                height:500px;
+                width:300px;
+                border:1px solid
+                position:absolute
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <ul>
+                <li>Home</li>
+                <li>About me</li>
+                <li>Skill</li>
+                <li>Projects</li>
+                <li>Experience</li>
+            </ul>
+            <div>
+                <div> class="box1"</div>
+                <div>class="box2"</div>
+            </div>
+
+        </div>
+    </body>
 </html>

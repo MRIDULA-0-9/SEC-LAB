@@ -1,51 +1,51 @@
-function add(a, b){
-    console.log("Result = " + (a + b)); 
+function addition(a, b){
+    console.log("Addition_result= " + (a + b)); 
 }
 
-function sub(a, b){
-    console.log("Result = " + (a - b)); 
+function subtraction(a, b){
+    console.log("Subtraction_result= " + (a - b)); 
 }
 
-function mul(a, b){
-    console.log("Result = " + (a * b)); 
+function multiplication(a, b){
+    console.log("Multiplication_result= " + (a * b)); 
 }
 
-function div(a, b){
-    console.log("Result = " + (a / b)); 
+function divition(a, b){
+    console.log("Div_result = " + (a / b)); 
 }
 
-function mod(a, b){
+function modules(a, b){
     console.log("Result = " + (a % b)); 
 }
 
-let a = parseFloat( prompt("Enter the number 1: "));
-let b = parseFloat( prompt("Enter the number 2: "));
+let a = parseFloat( prompt("Enter  number 1: "));
+let b = parseFloat( prompt("Enter  number 2: "));
 
 
 console.log("ADDITION (1)");
 console.log("SUBTRACTION (2)");
 console.log("MULTIPLICATION (3)");
 console.log("DIVISION (4)");
-console.log("MODULO (5)");
+console.log("MODULES (5)");
 
 var choice = parseInt( prompt("Enter your choice: "));
 
 switch (choice) {
     case 1:
-        add(a,b)
+        addition(a,b)
         break;
 
     case 2:
-        sub(b,a);
+        subtraction(b,a);
         break;
 
     case 3:
-        mul(a,b);
+        multiplication(a,b);
         break;
 
     case 4:
         if (b == 0){
-            console.log("Error: Cannot be multiplied my Zero!");
+            console.log("Error: Cannot be multiplied by Zero");
             break;
         }
 
@@ -55,10 +55,10 @@ switch (choice) {
         }
 
     case 5:
-        mod(a,b);
+        modules(a,b);
         break;
 
     default:
-        console.log("Invalid Input!")
+        console.log("Invalid Input")
         break;
 }

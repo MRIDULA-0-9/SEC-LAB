@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let employee=[]; //creating empty array
+        function addEmp(id,name,salary,role){
+           employee.push({id,name,salary,role})
+        }
+        addEmp(1,"Mridula",40000,"software developer");
+        addEmp(2,"Meghna",80000,"software developer");
+        addEmp(3,"Anagha",80000,"software developer");
+        console.log(employee);
+
+        //calculating salary
+        function calculateSal(){
+           let total=employee.reduce((sum,emp)=>sum+emp.salarys,0);
+           console.log(total);
+        }
+        calculateSal();
+
+        //update employee detail
+        function updateEmp(id,newDetail){
+            let emp=employee.find((e)=>e.id === id);
+            if(emp){
+                Object.assign(emp,newDetail);
+                console.log("updated",employee);
+            }
+            else{
+                console.log("emp not found");
+            }
+        }
+        updateEmp(1,({name:"Adarsh"}));
+
+
+        //remove
+        function removeEmp(index){
+            if(index >= 0 && index < employee.length){
+                employee.splice(index,1)
+                console.log("deleted",employee)
+            }
+            else{
+                console.log("employee not found");
+            }
+        }
+        removeEmp(0)
+        
+        
+        function searchEmp(){
+            let input = prompt("enter the employee name:");
+            if(!input){
+                console.log("enter correct name");
+            }
+            let result=employee.filter((e)=> e.name.toLowerCase() === input.toLowerCase())
+            if(result.length>0){
+                console.log("Employee found!",employee);
+            }
+            else{
+                console.log("Employee not found");
+            }
+        }
+        searchEmp()
+    </script>
+</body>
+</html>

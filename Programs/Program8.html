@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(7, 7, 7);
+
+        }
+        #clock{
+            font-size: 100px;
+            border-radius: 10px;
+            color: rgb(218, 69, 181);
+            background: rgb(15, 15, 15);
+            box-shadow: 0px 0px 20px rgb(199, 43, 186);
+         }
+    </style>
+</head>
+<body>
+    <div id="clock">Loading....</div>
+    <script>
+        function updateClock(){
+
+        //get date
+        const now=new Date();
+
+        //get hours
+        let hours=now.getHours();
+
+        //get minutes
+        let minutes=now.getMinutes();
+
+        //get seconds
+        let seconds=now.getSeconds();
+
+        //to display AM or PM
+        const AmPm=hours >=12 ? 'PM':'AM';
+
+        hours=hours % 12;
+        hours=hours ? hours:12;
+
+        //to diplay hour,minutes,seconds in two digits
+        let hTime=String(hours).padStart(2,"0");
+        let mTime=String(minutes).padStart(2,"0");
+        let sTime=String(seconds).padStart(2,"0");
+        const timeString=`${hTime}:${mTime}:${sTime} ${AmPm}`;//to print string value(changing time) in UI 
+
+        document.getElementById("clock").innerText=timeString;
+        }
+        updateClock();
+        setInterval(updateClock,1000);//to update automatically
+    </script>
+</body>
+</html>

@@ -17,7 +17,7 @@ class bank{
     constructor(intialamount=0){
         this._balance=intialamount;
     }
-    get balance(){
+    get balance(){   // only return
         return this._balance;
     }
     //checking balance
@@ -32,4 +32,5 @@ let a=new bank(1000);
 console.log(a)
 
 a.balance=100;
+
 console.log(a)

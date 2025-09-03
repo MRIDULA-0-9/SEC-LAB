@@ -17,11 +17,11 @@ class bank{
     constructor(intialamount=0){
         this._balance=intialamount;
     }
-    get balance(){   // only return
+    get balance(){  //only return
         return this._balance;
     }
     //checking balance
-    set balance(amount){
+    set balance(amount){   
         if(amount>0){
             this._balance+=amount;
             console.log(amount);
@@ -32,5 +32,4 @@ let a=new bank(1000);
 console.log(a)
 
 a.balance=100;
-
 console.log(a)

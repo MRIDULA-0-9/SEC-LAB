@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Quantifiers: specifies how many times a character or group should appear
+        // * : It is continuous,allows empty spaces,at last checks once again
+        // + : It is continuous , does not allow empty spaces , it groups together
+        // ? : It is continuous but print separately, at last checks once again
+
+        // let text="aaaba";
+        // let pattern=/\a*/g;
+        // let result=text.match(pattern);
+        // console.log(result);
+
+        // // Modifiers (flags): change how many regex matches
+        // //Common modifiers:
+        // // i = case insensitive
+        // // g = global match (all occurances)
+        // // m = multiline match
+
+        // let sentence="javascript programming language.\n java programming language";
+        // let pattern2=/\programming+/img;
+        // let result2=sentence.match(pattern2);
+        // console.log(result2);
+
+        // Meta characters: Special meaning in regex
+        //Common meta characters: 
+        // . -> any character except new line
+        // \d -> digit(0-9)
+        // \w -> word character (letters,digits,_)
+        // \s -> white space
+        // ^ -> start of string/line
+        // $ -> end of string/line
+
+        let digitchar="001js";
+        let pattern3=/\w+/g;
+        let result3=digitchar.match(pattern3);
+        console.log(result3);
+
+        //Grouping: Paranthesis() are used to group patterns and capture submatches
+
+         let texts= "Java Programming";
+         let pattern4=/(\w+)\s+(\w+)/;
+         let result4=texts.match(pattern4);
+         console.log(result4);
+         console.log(result4[0]);
+         console.log(result4[1]);
+         console.log(result4[2]);
+
+    
+        let fruits="apple banana apple grape";
+         // exec() -> group the output
+
+         let pattern5=/(apple)/;
+         let result5=pattern5.exec(fruits);
+         console.log(result5[0]); //"apple" (full match)
+         console.log(result5[1]);// "apple" (captured group)
+
+         // replace() -> replaces matches
+         let pattern6=/apple/g;
+         let result6=fruits.replace(pattern6,"orange");
+         console.log(result6);
+
+         // split() -> splits string using regex
+         let pattern7=/\s+/; //split by spaces
+         let result7=fruits.split(pattern7);
+         console.log(result7);
+
+
+    </script>
+</body>
+</html>

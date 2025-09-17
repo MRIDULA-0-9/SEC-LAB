@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // SET: A set is a collection of unique values.It automatically removes duplicates
+        //Syntax:
+        //      let mySet=new Set([iterable]);     iterable->iterating values
+
+        let email=new Set([]);
+        email.add("js@gamil.com");
+        email.add("java@gmail.com");
+        email.add("py@gmail.com");
+        email.add("py@gmail.com");
+        console.log(email);
+        //email.delete("py@gmail.com"); -> delete the particular value
+    
+        //email.clear() -> clear all the values
+        
+        for(let mailId of email){  //for -> variable
+            console.log(mailId);
+        }
+        email.forEach(x=>{   //for each-> reference
+            console.log(x)
+        })
+
+        //CREAT AND CHECK
+        let admin=new Set(["write","read","delete"]);
+        let user=new Set(["read"]);
+
+        function permission(role,granted){
+                return role.has(granted)
+        }
+        console.log(permission(admin,"delete"));
+        console.log(permission(user,"delete"));
+            
+        //UNION
+        let setA=new Set([1,2,3,4,5,1]);
+        let SetB=new Set([6,7,8,9,10,1]);
+
+        let union=new Set([...setA,...SetB]);  // ...(spread operator)-> combine all the values
+        console.log(union);
+
+        //INTERSECTION
+        let intersection=new Set([...setA].filter(x=>SetB.has(x)));
+        console.log(intersection);
+
+        //DIFFERENCE
+        let difference=new Set([...setA].filter(x=>!SetB.has(x)));
+        console.log(difference);
+
+
+        //entries() method : returns a new integer object with [value,value] pairs.
+        //This is because a Set has no separate keys-only values
+
+        let fruits=new Set(["Apple","Banana"]);
+        let entries=fruits.entries();
+        for(let entry of entries){
+            console.log(entry);
+        }
+
+
+        //WeakMap: A javaScript WeakMap is a collection of key value pairs,where the keys must be object
+
+        let user1={name:"java"}; //key
+        let user2={name:"python"}; //key
+        let newmap=new Map();
+        newmap.set(user1,"welcome java"); //value
+        newmap.set(user2,"welcome python"); //value
+        console.log(newmap);
+
+        for (let map of newmap){
+            console.log(map);
+        }
+
+        let mymap=new WeakMap();
+        mymap.set(user1,"welcome java"); //value
+        mymap.set(user2,"welcome python"); //value
+        console.log(mymap.get(user1));
+        console.log(mymap.get(user2));
+
+    </script>
+</body>
+</html>

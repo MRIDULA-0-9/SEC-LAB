@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <button id="addTaskBtn">Add Task</button>
+
+    <ul id="taskList">
+        </ul>
+
+    <script>
+       
+        const taskInput = document.getElementById('taskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskList = document.getElementById('taskList');
+
+        
+        const saveTasks = (tasks) => {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        };
+
+        
+        const loadTasks = () => {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            return tasks;
+        };
+
+       
+        const renderTasks = () => {
+            const tasks = loadTasks();
+            taskList.innerHTML = ''; 
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = 'task-item' + (task.completed ? ' completed' : '');
+
+                const span = document.createElement('span');
+                span.textContent = task.text;
+
+                const completeBtn = document.createElement('button');
+                completeBtn.textContent = task.completed ? 'Undo' : 'Complete';
+                completeBtn.onclick = () => toggleComplete(index);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = () => deleteTask(index);
+
+                li.appendChild(span);
+                li.appendChild(completeBtn);
+                li.appendChild(deleteBtn);
+                taskList.appendChild(li);
+            });
+        };
+
+        
+        const addTask = () => {
+            const text = taskInput.value.trim();
+            if (text === '') {
+                return; 
+            }
+            const tasks = loadTasks();
+            const newTask = { text: text, completed: false };
+            tasks.push(newTask);
+            saveTasks(tasks);
+            taskInput.value = ''; 
+            renderTasks();
+        };
+
+        
+        const deleteTask = (index) => {
+            const tasks = loadTasks();
+            tasks.splice(index, 1); 
+            saveTasks(tasks);
+            renderTasks();
+        };
+
+        
+        const toggleComplete = (index) => {
+            const tasks = loadTasks();
+            tasks[index].completed = !tasks[index].completed; 
+            saveTasks(tasks);
+            renderTasks();
+        };
+
+        
+        addTaskBtn.addEventListener('click', addTask);
+
+        
+        taskInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+        
+        
+        document.addEventListener('DOMContentLoaded', renderTasks);
+        
+        
+        window.addEventListener('load', () => {
+            const savedInput = sessionStorage.getItem('currentTaskInput');
+            if (savedInput) {
+                taskInput.value = savedInput;
+            }
+        });
+        taskInput.addEventListener('input', () => {
+            sessionStorage.setItem('currentTaskInput', taskInput.value);
+        });
+
+    </script>
+</body>
+</html>

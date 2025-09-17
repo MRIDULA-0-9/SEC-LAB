@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+</head>
+<body>
+    <h1>Library Summary</h1>
+    <div id="output"></div>
+
+    <script>
+        // Define Book class
+        class Book {
+            constructor(title, author, publishedYear) {
+                this.title = title;
+                this.author = author;
+                this.publishedYear = new Date(publishedYear).getFullYear();
+            }
+
+            getSummary() {
+                return `'${this.title}' by ${this.author}, published in ${this.publishedYear}`;
+            }
+        }
+
+        //Define EBook subclass
+        class EBook extends Book {
+            constructor(title, author, publishedYear, fileSize) {
+                super(title, author, publishedYear);
+                this.fileSize = fileSize;
+            }
+
+            getSummary() {
+                return `${super.getSummary()}, file size: ${this.fileSize} MB`;
+            }
+        }
+
+        //Create instances and call methods
+        const book1 = new Book("The Alchemist", "Paulo Coelho", "1988-01-01");
+        const ebook1 = new EBook("Digital Fortress", "Dan Brown", "1998-01-01", 5);
+
+
+        // Display the summaries
+const outputDiv = document.getElementById("output");
+outputDiv.innerHTML = "<p>" + book1.getSummary() + "</p>";
+outputDiv.innerHTML += "<p>" + ebook1.getSummary() + "</p>";
+
+</script>
+</body>
+</html>

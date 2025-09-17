@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 300px;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        span {
+            color: red;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Form Input Validator</h1>
+    <form id="myForm">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <span id="nameError"></span>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <span id="emailError"></span>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone">
+            <span id="phoneError"></span>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <span id="passwordError"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            let phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+
+            
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const phoneError = document.getElementById('phoneError');
+            const passwordError = document.getElementById('passwordError');
+
+           
+            nameError.textContent = '';
+            emailError.textContent = '';
+            phoneError.textContent = '';
+            passwordError.textContent = '';
+
+            let isValid = true;
+
+            
+            const nameRegex = /^[A-Za-z\s]{2,}$/;
+            if (!nameRegex.test(name)) {
+                nameError.textContent = 'Name must be at least 2 characters and contain only letters and spaces.';
+                isValid = false;
+            }
+
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            
+            const phoneRegex = /^\d{10}$/;
+            phone = phone.replace(/[^\d]/g, ''); 
+            document.getElementById('phone').value = phone; 
+            if (!phoneRegex.test(phone)) {
+                phoneError.textContent = 'Phone number must be exactly 10 digits.';
+                isValid = false;
+            }
+
+            
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                passwordError.textContent = 'Password must be at least 8 characters long, including one uppercase letter, one lowercase letter, one number, and one special character.';
+                isValid = false;
+            }
+
+           
+            if (isValid) {
+                alert('Form submitted successfully!');
+                
+            }
+        });
+    </script>
+</body>
+</html>

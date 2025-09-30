@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <script>
+        let tatkal=new Promise((resolve,reject)=>{
+            let avail=true
+            if(avail)
+               resolve()
+            else
+               reject()
+        })
+        .then(success)
+        .catch(failure)
+
+        function success(){
+            console.log("tickets available");
+        }
+        function failure(){
+            console.log("booking closed");
+        }
+        function tossCoin(){
+            return new Promise((resolve,reject) =>{
+                let rand=Math.floor(Math.random()*2)
+                if(rand==0)
+                  resolve(rand)
+                else
+                   reject(rand)
+            })
+        }
+        tossCoin.then((rand)=>console.log(`congrats you win ${rand}`))
+        .catch((rand)=>console.log(`you lose ${rand}`))
+        
+        async function Reached(){
+            return "yes"
+        }
+        console.log(Reached())
+
+        function placeorder(){
+            return new Promise((resolve,reject)=>{
+                console.log("try to placing the order...");
+                setTimeout(() => {
+                    resolve("order placed successfully")
+                }, 2000);
+            })
+        }
+        async function trackDelivery(){
+            const steps=[
+                "preparing your order",
+                "order is ready to pickup",
+                "pickedup by delivery partner",
+                "on the way to deliver your order",
+                "nearby location",
+                "ordered delivered."
+            ]
+            for(let step of steps){
+                await new promise((res)=>setTimeout(res,2000))
+                console.log(step)
+            }
+        }
+        async function orderstatus(params){
+            const status=await placeorder();
+            console,log(status);
+
+            trackDelivery();
+        }
+        orderstatus();
+     </script>
+</body>
+</html>

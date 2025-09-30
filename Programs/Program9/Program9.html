@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider{
+            text-align: center;
+            position: relative;
+            width: 60%;
+            margin: auto;
+        }
+        .slider img{
+            width:100%;
+            height: auto;
+        }
+        .slider button{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            background-color: rgba(red, green, blue, alpha);
+            color: white;
+            border: none;
+            cursor: pointer;
+
+        }
+        #prev{
+            left: 10px;
+        }
+        #next{
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+<img src="./image1.jpeg" alt="" class="slider-image" id="numberBox">
+        <button id="next">Next</button>
+        <button id="prev">Previous</button>
+    </div>
+    <script>
+        let number=["image1.jpeg","image2.jpeg","image3.jpeg"];
+        let currentIndex=0;
+
+        let numberBox=document.getElementById("numberBox");
+        let preBtn=document.getElementById("prev");
+        let nextBtn=document.getElementById("next");
+
+        //next button
+        nextBtn.addEventListener("click",()=>{
+            currentIndex=(currentIndex+1)%number.length;
+            //0= 0+1= 1%5=1
+            numberBox.src=number[currentIndex];
+        })
+
+        //previous button
+        preBtn.addEventListener("click",()=>{
+            currentIndex=(currentIndex-1 + number.length)%number.length;
+            //5= 5-1+5= 9%5=4                                        
+            numberBox.src=number[currentIndex];
+        })
+
+        //Automtic sliding
+        // setInterval(()=>{
+        //     currentIndex=(currentIndex+1)%number.length;
+        //     numberBox.src=number[currentIndex];
+        // },2000);
+    </script>
+</body>
+</html>
